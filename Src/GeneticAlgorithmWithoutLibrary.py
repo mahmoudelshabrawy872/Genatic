@@ -8,6 +8,7 @@ import random
 import matplotlib.pyplot as plt
 import geneticalgorithm as ga
 
+
 # Define the objective function
 def objective_function(x1, x2):
     return 4 * x1 + 3 * x2
@@ -21,7 +22,8 @@ def constraint1(x1, x2):
 def constraint2(x1, x2):
     return 2 * x1 + x2 <= 60
 
-#Genetic Algorithm Function
+
+# Genetic Algorithm Function
 def genetic_algorithm(population_size, num_generation):
     # Initialization
     population = []
@@ -61,33 +63,12 @@ def genetic_algorithm(population_size, num_generation):
             x1_child = random.uniform(min(parent1[0], parent2[0]), max(parent1[0], parent2[0]))
             x2_child = random.uniform(min(parent1[1], parent2[1]), max(parent1[1], parent2[1]))
             offspring.append((x1_child, x2_child))
-        #########################
-        # Parent1: (x1=10 , x2=5)
-        # Parent2: (x1=20 , x2=15)
-        # The minimum value is min(parent1[0],parent2[0]) = min(10,20) = 10
-        # The Maximum value is max(parent1[0],parent2[0]) = max(10,20) = 20
-        # random.uniform(10,20)    x1_child = 17
-        # The minimum value is min(parent1[1],parent2[1]) = min(5,15) = 5
-        # The Maximum value is max(parent1[1],parent2[1]) = max(5,15) = 15
-        # random.uniform(5,15)    x2_child = 11
-        # offspring: (x1=17,x2=11)
-        #########################
 
         # Mutation
         mutation_rate = 1 / (generation + 1)  # Dynamic mutation rate
         for i in range(population_size):
             if random.random() < mutation_rate:
                 offspring[i] = (random.uniform(0, 40), random.uniform(0, 60))
-
-        # mutation_rate = 1/(1+1) = 0.5
-        # random.random() = 0.75
-        # No mutations occur
-
-        # random.random() = 0.2 < mutation_rate(0.5)
-        # New values for the offspring after mutation (new_x1, new_x2)
-
-        # Beginning - Exploration - High mutation rate
-        # Later generations - Exploitation - Low mutation rate
 
         # Elitism
         if best_solution is not None:
