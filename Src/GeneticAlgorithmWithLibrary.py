@@ -1,6 +1,7 @@
 import numpy as np
 from geneticalgorithm import geneticalgorithm as ga
 
+
 def fitness_function(X):
     x = X[0]
     y = X[1]
@@ -18,6 +19,7 @@ def fitness_function(X):
 
     return -profit  # Minimize negative profit
 
+
 algorithm_params = {
     'max_num_iteration': None,
     'population_size': 100,
@@ -34,8 +36,8 @@ variable_boundaries = np.array([(0, 40), (0, 40)])
 
 model = ga(
     function=fitness_function,
-    dimension=2,  # Two decision variables: x and y
-    variable_type='int',  # Decision variables are integers
+    dimension=2,
+    variable_type='int',
     variable_boundaries=variable_boundaries,  # Use the NumPy array
     algorithm_parameters=algorithm_params
 )
